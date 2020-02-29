@@ -21,6 +21,6 @@ int main()
         }
  		    c++;
     }    
- 	  cout << c;
+    cout << c;
     return 0;
 }
