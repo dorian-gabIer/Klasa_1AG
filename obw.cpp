@@ -9,17 +9,17 @@ int main()
     {
         cin >> tmpw;
         cin >> tmpb;
-		    cable.push_back(tmpw-tmpb);
+	cable.push_back(tmpw-tmpb);
     }
-	  sort(cable.begin(),cable.end());
+    sort(cable.begin(),cable.end());
     for(i = n-1; i >= 0; i--)
     {
- 		    sum = sum +  cable[i];
- 		    if (sum < 0)
+ 	sum = sum +  cable[i];
+ 	if (sum < 0)
         {
- 			    break;
+ 		break;
         }
- 		    c++;
+ 	c++;
     }    
     cout << c;
     return 0;
