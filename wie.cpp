@@ -3,8 +3,8 @@
 using namespace std;
 int main()
 {
-ios_base::sync_with_stdio(false);
-cin.tie(nullptr);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
     int n, m, i, a, temp, cstair = 0;
     vector<int>stairs;
     bool itdid = false;
@@ -19,7 +19,8 @@ cin.tie(nullptr);
         cin >> temp;
         for(a = 0; a < n; a++)
         {
-           if(!itdid){
+           if(!itdid)
+           {
                if(stairs[a] < temp)
                {
                     cstair++;
@@ -29,7 +30,7 @@ cin.tie(nullptr);
                     cout << cstair << " ";
                     itdid = true;
                }
-        }
+           }
         }
         if(!itdid)
         {
