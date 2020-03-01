@@ -1,42 +1,63 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int n, m, i, a, temp, cstair = 0;
-    vector<int>stairs;
-    bool itdid = false;
+struct person{
+    person(int v, int i){
+        value = v;
+        index = i;
+    }
+    int value;
+    int index;
+    int score = 0;
+};
+bool people_sort_val(const person &a, const person &b){
+    return a.value < b.value;
+}
+bool people_sort_index(const person &a, const person &b){
+    return a.index < b.index;
+}
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(NULL);
+    int n, m, a, maxval = 0, previous = 1;
     cin >> n >> m;
-    for(i = 0; i < n; i++)
+    vector<int> stairs;
+    for (int i = 0; i < n; i++)
     {
-        cin >> temp;
-        stairs.push_back(temp);
+        cin >> a;
+        if (a > maxval)
+        {
+            stairs.push_back(i);
+            stairs.push_back(a);
+            maxval = a;
+        }
+        
     }
-    for(i = 0; i < m; i++)
+    stairs.push_back(n);
+    vector<person> people;
+    for(int i = 0; i < m; i++)
     {
-        cin >> temp;
-        for(a = 0; a < n; a++)
-        {
-           if(!itdid)
-           {
-               if(stairs[a] < temp)
-               {
-                    cstair++;
-               }
-               else
-               {
-                    cout << cstair << " ";
-                    itdid = true;
-               }
-           }
-        }
-        if(!itdid)
-        {
-            cout << cstair << " ";
-        }
-        cstair = 0;
-        itdid = false;
+        int a; cin >> a;
+        person x = person(a, i);
+        people.push_back(x);
     }
+    sort(people.begin(), people.end(), people_sort_val);
+    for(int i = 0; i < m; i++)
+    {
+        if(people[i].value > maxval) people[i].score = n;
+        else
+        {
+            for(int j = previous; j < stairs.size()-1; j += 2)
+            {
+                if(people[i].value <= stairs[j])
+                {
+                    people[i].score = stairs[j-1];
+                    previous = j;
+                    break;
+                }
+            }
+        }        
+    }
+    sort(people.begin(), people.end(), people_sort_index);
+    for(person a: people) printf("%i ", a.score);
+    return 0;
 }
