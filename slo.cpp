@@ -1,19 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
+    std::ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     string temp;
-    vector<string>words;
-    int c = getchar();
-    char a;
-    while(c != EOF)
+    set<string> elements;
+    while(cin >> temp)
     {
-        cin >> temp;
-        a = static_cast<char>(c);
-        temp = a + temp;
-        words.push_back(temp);
-        c = getchar();
+        elements.insert(temp);
     }
-    sort( words.begin(), words.end() );
-    words.erase( unique( words.begin(), words.end() ), words.end() );
-    cout << words.size() - 1;
+    cout << elements.size();
 }
