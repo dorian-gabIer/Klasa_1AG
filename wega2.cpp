@@ -1,39 +1,48 @@
-#include <cmath>
-#include <cstdio>
-#include <vector>
-#include <string>
-#include <iostream>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-int main() {
-    vector<char>result(101);
+int main(){
+    std::ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     string temp;
-    int i = 0;
+    int mx = 0, ite = 0;
+    set<char>chrs;
+    vector<string>words;
     cin >> temp;
-    for(auto x : temp)
-    {
-        result.push_back(x);
-    }
-    sort(result.begin(), result.end());
-    result.erase(unique(result.begin(), result.end()), result.end());
-    int maxo = result.size();
-    string wmaxo = temp;
-    result.clear();
-    for(i = 1; i < 1000; i++)
-    {
-        cin >> temp;
+    words.push_back(temp);
         for(auto x : temp)
         {
-            result.push_back(x);
+            chrs.insert(x);
         }
-        sort(result.begin(), result.end());
-        result.erase(unique(result.begin(), result.end()), result.end());
-        if(maxo < result.size())
+        if(mx < chrs.size())
         {
-            maxo = result.size();
-            wmaxo = temp;
+            mx = chrs.size();
         }
-        result.clear();
+        chrs.clear();
+    while(cin >> temp)
+    {
+        words.push_back(temp);
+        for(auto x : temp)
+        {
+            chrs.insert(x);
+        }
+        if(mx < chrs.size())
+        {
+            mx = chrs.size();
+        }
+        chrs.clear();
     }
-    cout << wmaxo << " " << maxo;
+    while(ite < words.size())
+    {
+        for(auto x : words[ite])
+        {
+            chrs.insert(x);
+        }
+        if(mx == chrs.size())
+        {
+        cout << words[ite] << " " << mx;
+        return 0;
+        }
+        chrs.clear();
+        ite++;
+    }
 }
