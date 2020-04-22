@@ -15,8 +15,15 @@ void ulamki(int a1, int b1, int a2, int b2)
     mnb1 = __gcd(wspil, wsp);
     wspil /= mnb1;
     wsp /= mnb1;
-    if(c == 0) cout << wspil << "/" << wsp;
-    else cout << c << " " << wspil << "/" << wsp;
+    if(wsp!=wspil)
+    {
+        if(c == 0) cout << wspil << "/" << wsp;
+        else cout << c << " " << wspil << "/" << wsp;
+    }
+    else
+    {
+        cout << c+1;
+    }
 }
 int main()
 {
