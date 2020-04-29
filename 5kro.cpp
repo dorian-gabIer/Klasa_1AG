@@ -4,6 +4,7 @@ int main()
 {
     string in;
     getline(cin, in);
-    cout << in << ".";
+    if(in.back() == '.') cout << in;
+    else cout << in << ".";
     return 0;
 }
