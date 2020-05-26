@@ -21,32 +21,36 @@ string dec2bin(int n)
     reverse(res.begin(), res.end());
     return res;
 }
-string dec2u1(int n)
+string dec2u1(int i, int n)
 {
-    string res, bin;
+    i *= 8;
+    string res, bin, res2;
     if(n>=0)
     {
         bin = dec2bin(n);
         res = bin;
+        while (res.size() < i) res = '0' + res;
+        if(res.size() > i) return "ERROR";
+        return res;
     }
     else {
         bin = dec2bin(-n);
-        for(auto x : bin)
+        res = bin;
+        while (res.size() < i) res = '0' + res;
+        if(res.size() > i) return "ERROR";
+        for(auto x : res)
         {
-            if(x == '1') res += '0';
-            if(x == '0') res += '1';
+            if(x == '1') res2 += '0';
+            if(x == '0') res2 += '1';
         }
+        return res2;
     }
-    while (res.size() < 8) res = '0' + res;
-    return res;
 }
 int main()
 {
     int i, n;
     cin >> i >> n;
-    string res = dec2u1(n);
-    int size = res.size();
-    if(8*i <= size) cout << res;
-    else cout << "ERROR";
+    string res = dec2u1(i, n);
+    cout << res;
     return 0;
 }
