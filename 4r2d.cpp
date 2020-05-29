@@ -1,42 +1,40 @@
-// Example program
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-int w(char r) 
+int w(char znak)
 {
-    if (r == 'I') return 1; 
-    else if (r == 'V') return 5; 
-    else if (r == 'X') return 10; 
-    else if (r == 'L') return 50; 
-    else if (r == 'C') return 100; 
-    else if (r == 'D') return 500; 
-    else if (r == 'M') return 1000; 
-    else return -1;
+   if (znak == 'I') return 1;
+   else if (znak == 'V') return 5;
+   else if (znak == 'X') return 10;
+   else if (znak == 'L') return 50;
+   else if (znak == 'C') return 100;
+   else if (znak == 'D') return 500;
+   else if (znak == 'M') return 1000;
+   else return 0;
 }
-int rom2dec(string n)
+int rom2dec(string x)
 {
-    int i = 0, sum = 0;
-    char temp = 'a';
-    while(temp != n.back())
-    {
-        temp = n[i];
-        if(w(n[i+1]) > w(n[i]))
-        {
-            sum += (w(n[i+1])-w(n[i]));
-            temp = n[i+1];
-            i += 2;
-        }
-        else
-        {
-            sum += w(n[i]);
+   int sum = 0;
+   for (int i = 0; i < int(x.size()); i++)
+   {
+      int s1 = w(x[i]);
+      if ((i+1) < int(x.size()))
+      {
+         int s2 = w(x[i+1]);
+         if (s1 >= s2) sum = sum + s1;
+         else
+         {
+            sum = sum + s2 - s1;
             i++;
-        }
-    }
-    return sum;
+         }
+      }
+      else sum = sum + s1;
+   }
+   return sum;
 }
 int main()
 {
-    string n;
-    cin >> n;
-    cout << rom2dec(n);
+    string in;
+    cin >> in;
+    cout << rom2dec(in);
     return 0;
 }
