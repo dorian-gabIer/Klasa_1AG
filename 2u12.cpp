@@ -1,30 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
-string u12dec(string n)
-{
-    int s = n.size();
-    string temp;
-    int res = 0;
-    reverse(n.begin(), n.end());
-    for(int i = 0; i < s; i++)
-    {
-        if(i == s-1)
-        {
-            temp = n[i];
-            res += (pow(2, i)*stoi(temp)*(-1));
-        }
-        else
-        {
-            temp = n[i];
-            res += (pow(2, i)*stoi(temp));
-        }
-    }
-    return to_string(res);
-}
 int main()
 {
-    string n;
-    cin >> n;
-    cout << u12dec(n);
-    return 0;
+  string bin;
+  int potega = 1, a = 0;
+  cin >> bin;
+  if(bin[0]=='0')
+  {
+    for(int i=bin.size()-1; i>=0; i--)
+    {
+        a=a+int(bin[i]-48)*potega;
+        potega*=2;
+    }
+    cout<<a;
+  }
+  else
+  {
+    for(int i=0; i<bin.size(); i++)
+    {
+      if(bin[i]=='0')
+      {
+        bin[i]='1';
+      }
+      else
+      {
+        bin[i]='0';
+      }
+    }
+    for(int i=bin.size()-1; i>=0; i--)
+    {
+      a = a + int(bin[i]-48)*potega;
+      potega *= 2;
+    }
+    a *= (-1);
+    cout<<a;
+  }
 }
