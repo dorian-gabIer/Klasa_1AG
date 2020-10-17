@@ -3,10 +3,10 @@ using namespace std;
 string dec2bin(int n)
 {
     string res;
-    while(1)
+    while (1)
     {
-        if(n == 0) break;
-        if(n%2 == 0)
+        if (n == 0) break;
+        if (n % 2 == 0)
         {
             res += "0";
             n /= 2;
@@ -14,7 +14,7 @@ string dec2bin(int n)
         else
         {
             res += "1";
-            n-= 1;
+            n -= 1;
             n /= 2;
         }
     }
@@ -23,43 +23,23 @@ string dec2bin(int n)
 }
 int main()
 {
-  int n, x, a;
-  cin>>n>>x;
-  string bin;
-  a=x;
-  if(x >= 0)
-  {
-    while(x!=0)
+    string res;
+    int x, n;
+    bool minus = false;
+    cin >> n >> x;
+    if (x < 0)
     {
-        if(x%2==0)
-        {
-            bin = '0' + bin;
-        }
-        else
-        {
-            bin = '1' + bin;
-        }
-        x /= 2;
+        x = pow(2, n * 8 - 1) + x;
+        minus = true;
     }
-  }
-  else
-  {
-      int th = 128 + x;
-      bin = dec2bin(th);
-  } 
-  int d = 0;
-    if(x<0) d=1;
-    if(bin.size() >= n*8)
-    {
-        cout << "ERROR";
-    }
+    if (x < 0) cout << "ERROR";
     else
     {
-        while(bin.size()+d < n*8)
-        {
-            bin = '0' + bin;
-        }
-        if(x<0) bin = '1' + bin;
-        cout << bin;
+        res = dec2bin(x);
+        while (res.size() < ((n * 8) - 1)) res = '0' + res;
+        res = (minus?'1':'0') + res;
+        if (res.size() > n * 8) cout << "ERROR";
+        else cout << res;
     }
+    return 0;
 }
